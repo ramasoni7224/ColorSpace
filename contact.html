@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Color Space</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to right, #1D1165, #F7B505);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #fff;
+            text-align: center;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            background: #ffeb3b;
+            color: #333;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">&larr; Back</a>
+        <h1>Contact Us</h1>
+        <p>Have questions or suggestions? Feel free to reach out to us!</p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> <a href="mailto:ramasoni7224@gmail.com">ramasoni7224@gmail.com</a></p>
+            <p><strong>Follow us:</strong> <a href="https://www.instagram.com/ram.thebeatboxer?igsh=MWl0MDVwdTQwb3Exbg==">Instagram</a></p>
+        </div>
+        <div class="contact-form">
+            <h2>Send us a Message</h2>
+            <form action="https://formspree.io/f/xzzeaabq" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+                <p id="success-message" style="color: lightgreen; display: none;">Message sent successfully!</p>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            fetch(this.action, {
+                method: "POST",
+                body: new FormData(this),
+                headers: { "Accept": "application/json" }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("success-message").style.display = "block";
+                    this.reset();
+                }
+            });
+        });
+        </script>
+</body>
+</html>
